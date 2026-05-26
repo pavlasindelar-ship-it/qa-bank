@@ -1,0 +1,16 @@
+{
+    "registration": {
+        "errorMessage": {
+            "emptyFirstName": "First name is required.",
+            "emptyLastName": "Last name is required.",
+            "emptyAddress": "Address is required.",
+            "emptyCity": "City is required.",
+            "emptyState": "State is required.",
+            "emptyZipCode": "Zip Code is required.",
+            "emptySocialSecurityNumber": "Social Security Number is required.",
+            "emptyUserName": "Username is required.",
+            "emptyPassword": "Password is required.",
+            "emptyPasswordConfirmation": "Password confirmation is required."
+        }
+    }
+}
