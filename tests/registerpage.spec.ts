@@ -1,22 +1,23 @@
-import { expect } from '@playwright/test';
 import { registrationTest } from '../core/fixtures/register.fixtures';
-import { DashboardPage } from '../model/pages/dashboard.page';
+import { DashboardVerification } from '../model/verifications/dashboard.verification';
+import { RegisterVerification } from '../model/verifications/register.verification';
 
 registrationTest.describe('Registration page', () => {
 
-    registrationTest('Verification of empty fields', async ({ registerPage }) => {
+    registrationTest('Verification of empty fields', async ({ registerPage, page, t }) => {
 
         await registerPage.clickRegisterButton();
-        await registerPage.assertEmptyFirstName();
-        await registerPage.assertEmptyLastName();
-        await registerPage.assertEmptyAddress();
-        await registerPage.assertEmptyCity();
-        await registerPage.assertEmptyState();
-        await registerPage.assertEmptyZipCode();
-        await registerPage.assertEmptySocialSecurityNumber();
-        await registerPage.assertEmptyUsername();
-        await registerPage.assertEmptyPassword();
-        await registerPage.assertEmptyPasswordConfirmation();
+        const registerVerification = new RegisterVerification(page, t);
+        await registerVerification.assertEmptyFirstName();
+        await registerVerification.assertEmptyLastName();
+        await registerVerification.assertEmptyAddress();
+        await registerVerification.assertEmptyCity();
+        await registerVerification.assertEmptyState();
+        await registerVerification.assertEmptyZipCode();
+        await registerVerification.assertEmptySocialSecurityNumber();
+        await registerVerification.assertEmptyUsername();
+        await registerVerification.assertEmptyPassword();
+        await registerVerification.assertEmptyPasswordConfirmation();
     });
 
     registrationTest('Registration - happy way', async ({ registerPage, page, t }) => {
@@ -32,8 +33,8 @@ registrationTest.describe('Registration page', () => {
         await registerPage.fillPassword();
         await registerPage.fillPasswordConfirmation();
         await registerPage.clickRegisterButton();
-        const dashboardPage = new DashboardPage(page, t);
-        await dashboardPage.assertAccountSuccessfullyCreated();
+        const dashboardVerification = new DashboardVerification(page, t);
+        await dashboardVerification.assertAccountSuccessfullyCreated();
     });
 
 });

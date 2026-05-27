@@ -1,4 +1,5 @@
 import { DashboardPage } from "../../model/pages/dashboard.page";
+import { DashboardVerification } from "../../model/verifications/dashboard.verification";
 import { registrationTest } from "./register.fixtures";
 
 export const registeredTest = registrationTest.extend<{
@@ -17,8 +18,8 @@ export const registeredTest = registrationTest.extend<{
         await registerPage.fillPassword();
         await registerPage.fillPasswordConfirmation();
         await registerPage.clickRegisterButton();
-        const dashboardPage = new DashboardPage(page, t);
-        await dashboardPage.assertAccountSuccessfullyCreated();
-        await use(dashboardPage);
+        const dashboardVerification = new DashboardVerification(page, t);
+        await dashboardVerification.assertAccountSuccessfullyCreated();
+        await use(new DashboardPage(page, t));
     }
 });
