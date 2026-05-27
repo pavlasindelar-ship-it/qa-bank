@@ -4,6 +4,7 @@ import { registrationTest } from "./register.fixtures";
 
 export const registeredTest = registrationTest.extend<{
     dashboardPage: DashboardPage
+    dashboardVerification: DashboardVerification
 }>({
     dashboardPage: async ({ page, registerPage, t }, use) => {
         await registerPage.fillFirstName();
@@ -18,8 +19,10 @@ export const registeredTest = registrationTest.extend<{
         await registerPage.fillPassword();
         await registerPage.fillPasswordConfirmation();
         await registerPage.clickRegisterButton();
-        const dashboardVerification = new DashboardVerification(page, t);
-        await dashboardVerification.assertAccountSuccessfullyCreated();
         await use(new DashboardPage(page, t));
+    },
+    dashboardVerification: async ({ page, t }, use) => {
+        const dashboardVerification = new DashboardVerification(page, t);
+        await use(dashboardVerification);
     }
 });
