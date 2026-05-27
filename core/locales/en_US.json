@@ -11,6 +11,19 @@
             "emptyUserName": "Username is required.",
             "emptyPassword": "Password is required.",
             "emptyPasswordConfirmation": "Password confirmation is required."
-        }
+        },
+        "heading":"Signing up is easy!",
+        "button": "Register"
+    },
+    "homePage": {
+        "title": "ParaBank | Welcome | Online Banking",
+        "subtitle": "Experience the difference",
+        "registerLink": "Register",
+        "imageLogoName": "ParaBank"
+    },
+    "dashboardPage": {
+        "successMessage": "Your account was created successfully. You are now logged in.",
+        "openNewAccountLink": "Open New Account",
+        "accountTypeHeading": "What type of account would you like to open?"
     }
 }

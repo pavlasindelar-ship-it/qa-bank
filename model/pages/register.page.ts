@@ -11,11 +11,11 @@ export class RegisterPage {
         private readonly t: (key: TranslationKeys, options?: Record<string, any>) => string) { }
 
     async assertSigningUpTitle() {
-        await expect(this.page.getByText("Signing up is easy!")).toBeVisible();
+        await expect(this.page.getByText(this.t("registration.heading"))).toBeVisible();
     }
 
     async clickRegisterButton() {
-        await this.page.getByRole('button', { name: 'Register' }).click();
+        await this.page.getByRole('button', { name: this.t("registration.button") }).click();
     }
 
     async assertEmptyFirstName() {

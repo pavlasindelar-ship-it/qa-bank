@@ -9,14 +9,14 @@ export class DashboardPage {
         private readonly t: (key: TranslationKeys, options?: Record<string, any>) => string) { }
 
     async assertAccountSuccessfullyCreated() {
-        await expect(this.page.getByText("Your account was created successfully. You are now logged in.")).toBeVisible();
+        await expect(this.page.getByText(this.t("dashboardPage.successMessage"))).toBeVisible();
     }
 
     async clickOpenNewAccountLink() {
-        await this.page.getByText("Open New Account").click();
+        await this.page.getByText(this.t("dashboardPage.openNewAccountLink")).click();
     }
 
     async assertWhatTypeOfAccount() {
-        await expect(this.page.getByText("What type of account would you like to open?")).toBeVisible();
+        await expect(this.page.getByText(this.t("dashboardPage.accountTypeHeading"))).toBeVisible();
     }
 }
