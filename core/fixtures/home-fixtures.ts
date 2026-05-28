@@ -12,8 +12,8 @@ export const homeTest = test.extend<{
         await use(homePage);
     },
 
-    homeVerification: async ({ page, t }, use) => {
-        const homeVerification = new HomeVerification(page, t);
+    homeVerification: async ({ page, t, homePage }, use) => {
+        const homeVerification = new HomeVerification(page, t, homePage.selectors);
         await use(homeVerification);
     }
 });

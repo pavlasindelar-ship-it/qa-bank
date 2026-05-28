@@ -1,13 +1,11 @@
 import { registrationTest } from '../core/fixtures/register.fixtures';
+import { DashboardPage } from '../model/pages/dashboard.page';
 import { DashboardVerification } from '../model/verifications/dashboard.verification';
-import { RegisterVerification } from '../model/verifications/register.verification';
 
 registrationTest.describe('Registration page', () => {
 
-    registrationTest('Verification of empty fields', async ({ registerPage, page, t }) => {
-
+    registrationTest('Verification of empty fields', async ({ registerPage, registerVerification}) => {
         await registerPage.clickRegisterButton();
-        const registerVerification = new RegisterVerification(page, t);
         await registerVerification.assertEmptyFirstName();
         await registerVerification.assertEmptyLastName();
         await registerVerification.assertEmptyAddress();
@@ -33,7 +31,8 @@ registrationTest.describe('Registration page', () => {
         await registerPage.fillPassword();
         await registerPage.fillPasswordConfirmation();
         await registerPage.clickRegisterButton();
-        const dashboardVerification = new DashboardVerification(page, t);
+        const dashboardPage = new DashboardPage(page, t);
+        const dashboardVerification = new DashboardVerification(page, t, dashboardPage.selectors);
         await dashboardVerification.assertAccountSuccessfullyCreated();
     });
 

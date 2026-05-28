@@ -21,8 +21,8 @@ export const registeredTest = registrationTest.extend<{
         await registerPage.clickRegisterButton();
         await use(new DashboardPage(page, t));
     },
-    dashboardVerification: async ({ page, t }, use) => {
-        const dashboardVerification = new DashboardVerification(page, t);
+    dashboardVerification: async ({ page, dashboardPage, t }, use) => {
+        const dashboardVerification = new DashboardVerification(page, t, dashboardPage.selectors);
         await use(dashboardVerification);
     }
 });
