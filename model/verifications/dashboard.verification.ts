@@ -9,11 +9,29 @@ export class DashboardVerification {
         private readonly t: (key: TranslationKeys, options?: Record<string, any>) => string,
         public readonly selectors: DashboardPageSelectors) { }
 
-    async assertAccountSuccessfullyCreated() {
+    async assertRegistrationSuccessfullyCreated() {
         await expect(this.page.getByText(this.selectors.successMessageSelector)).toBeVisible();
     }
 
     async assertWhatTypeOfAccount() {
         await expect(this.page.getByText(this.selectors.accountTypeHeadingSelector)).toBeVisible();
     }
+
+    async assertAccountOpened() {
+        await expect(this.page.getByRole("heading", { name: this.selectors.accountOpenedMessageSelector, level: 1})).toBeVisible();
+    }
+
+    async assertAccountsOverview() {
+        await expect(this.page.getByRole("heading", { name: this.selectors.accountsOverviewTitleSelector, level: 1})).toBeVisible();
+    }
+
+    async assertTransferSuccessfulMessage() {
+        await expect(this.page.getByText(this.t("dashboardPage.transferSuccessfulMessage"))).toBeVisible();
+    }
+
+    async assertLatestTransaction(amount: string) {
+        const latestTransaction = this.page.locator(this.selectors.latestTransactionSelector).last();
+        await expect(latestTransaction).toContainText(amount);
+    }
+
 }

@@ -33,7 +33,7 @@ registrationTest.describe('Registration page', () => {
         await registerPage.clickRegisterButton();
         const dashboardPage = new DashboardPage(page, t);
         const dashboardVerification = new DashboardVerification(page, t, dashboardPage.selectors);
-        await dashboardVerification.assertAccountSuccessfullyCreated();
+        await dashboardVerification.assertRegistrationSuccessfullyCreated();
     });
 
 });

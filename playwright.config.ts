@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+import dotenv from "dotenv";
+dotenv.config();
+
 export default defineConfig({
   fullyParallel: true,
   use: {
@@ -16,7 +19,7 @@ export default defineConfig({
       testDir: './tests',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: "https://parabank.parasoft.com/parabank/index.htm",
+        baseURL: "http://127.0.0.1:8080/",
         trace: 'retain-on-failure',
         screenshot: 'only-on-failure'
       },

@@ -19,7 +19,8 @@ export const registeredTest = registrationTest.extend<{
         await registerPage.fillPassword();
         await registerPage.fillPasswordConfirmation();
         await registerPage.clickRegisterButton();
-        await use(new DashboardPage(page, t));
+        const dashboardPage = new DashboardPage(page, t);
+        await use(dashboardPage);
     },
     dashboardVerification: async ({ page, dashboardPage, t }, use) => {
         const dashboardVerification = new DashboardVerification(page, t, dashboardPage.selectors);
