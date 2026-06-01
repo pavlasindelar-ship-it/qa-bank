@@ -13,7 +13,8 @@ export type DashboardPageSelectors = {
     amountToTransferSelector: string;
     fromAccountSelector: string;
     toAccountSelector: string;
-    latestTransactionSelector: string;
+    latestTransactionOnDebitSideSelector: string;
+    latestTransactionOnCreditSideSelector: string;
 }
 
 export class DashboardPage {
@@ -34,7 +35,8 @@ export class DashboardPage {
             amountToTransferSelector: "input#amount",
             fromAccountSelector: "select#fromAccountId",
             toAccountSelector: "select#toAccountId",
-            latestTransactionSelector: "#transactionTable tbody tr"
+            latestTransactionOnDebitSideSelector: "#transactionTable tbody tr td:nth-of-type(3)",
+            latestTransactionOnCreditSideSelector: "#transactionTable tbody tr td:nth-of-type(4)"
         };
     }
 

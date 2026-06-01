@@ -27,7 +27,10 @@ registeredTest.describe('Dashboard page', () => {
 
         await dashboardPage.clickAccountsOverviewLink();
         await dashboardPage.clickAccount(accountNumbers[0]);
-        await dashboardVerification.assertLatestTransaction(amountToTransfer);
+        await dashboardVerification.assertLatestTransactionOnDebitSide(amountToTransfer);
+        await dashboardPage.clickAccountsOverviewLink();
+        await dashboardPage.clickAccount(accountNumbers[1]);
+        await dashboardVerification.assertLatestTransactionOnCreditSide(amountToTransfer);
     });
 
 });

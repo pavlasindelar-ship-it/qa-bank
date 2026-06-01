@@ -29,8 +29,13 @@ export class DashboardVerification {
         await expect(this.page.getByText(this.t("dashboardPage.transferSuccessfulMessage"))).toBeVisible();
     }
 
-    async assertLatestTransaction(amount: string) {
-        const latestTransaction = this.page.locator(this.selectors.latestTransactionSelector).last();
+    async assertLatestTransactionOnDebitSide(amount: string) {
+        const latestTransaction = this.page.locator(this.selectors.latestTransactionOnDebitSideSelector).last();
+        await expect(latestTransaction).toContainText(amount);
+    }
+
+     async assertLatestTransactionOnCreditSide(amount: string) {
+        const latestTransaction = this.page.locator(this.selectors.latestTransactionOnCreditSideSelector).last();
         await expect(latestTransaction).toContainText(amount);
     }
 
