@@ -13,4 +13,7 @@ export function getRandomUser() {
     username: faker.internet.username(),
     password: faker.internet.password(),
   };
+
 }
+
+export type TestData = ReturnType<typeof getRandomUser>;

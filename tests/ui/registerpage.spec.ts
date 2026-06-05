@@ -1,6 +1,6 @@
-import { registrationTest } from '../core/fixtures/register.fixtures';
-import { DashboardPage } from '../model/pages/dashboard.page';
-import { DashboardVerification } from '../model/verifications/dashboard.verification';
+import { registrationTest } from '../../core/fixtures/register.fixtures';
+import { DashboardPage } from '../../model/pages/dashboard.page';
+import { DashboardVerification } from '../../model/verifications/dashboard.verification';
 
 registrationTest.describe('Registration page', () => {
 

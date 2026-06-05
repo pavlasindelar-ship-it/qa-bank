@@ -1,5 +1,5 @@
-import { loggedTest } from '../core/fixtures/logged-fixtures';
-import { registeredTest } from '../core/fixtures/registered-fixtures';
+import { loggedTest } from '../../core/fixtures/logged-fixtures';
+import { registeredTest } from '../../core/fixtures/registered-fixtures';
 
 registeredTest.describe('Dashboard page', () => {
 

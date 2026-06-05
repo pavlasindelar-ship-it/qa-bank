@@ -1,8 +1,8 @@
-import { homeTest } from '../core/fixtures/home-fixtures';
-import { DashboardPage } from '../model/pages/dashboard.page';
-import { RegisterPage } from '../model/pages/register.page';
-import { DashboardVerification } from '../model/verifications/dashboard.verification';
-import { RegisterVerification } from '../model/verifications/register.verification';
+import { homeTest } from '../../core/fixtures/home-fixtures';
+import { DashboardPage } from '../../model/pages/dashboard.page';
+import { RegisterPage } from '../../model/pages/register.page';
+import { DashboardVerification } from '../../model/verifications/dashboard.verification';
+import { RegisterVerification } from '../../model/verifications/register.verification';
 
 homeTest.describe('Home page tests', () => {
 

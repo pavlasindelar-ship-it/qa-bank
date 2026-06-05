@@ -16,7 +16,7 @@ export default defineConfig({
   projects: [
     {
       name: 'parabank',
-      testDir: './tests',
+      testDir: './tests/ui',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: "http://127.0.0.1:8080/",
@@ -24,6 +24,17 @@ export default defineConfig({
         screenshot: 'only-on-failure'
       },
       outputDir: 'tests-result/parabank-ui-chrome',
+    },
+    {
+      name: 'api-parabank',
+      testDir: './tests/api',
+      use: {
+        baseURL: "http://127.0.0.1:8080",
+        trace: 'off',
+        screenshot: 'off',
+        actionTimeout: 0,
+      },
+      outputDir: 'tests-result/parabank-api',
     }
   ]
 });
