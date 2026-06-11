@@ -21,5 +21,24 @@ export type CustomerAccountsResponse = {
     balance: number;
 }
 
+export class CreateNewBankAccountRequest {
+    customerId: number;
+    newAccountType: number;
+    fromAccountId : number;
+
+    constructor(customerId: number, newAccountType: number, fromAccountId: number) {
+        this.customerId = customerId;
+        this.newAccountType = newAccountType;
+        this.fromAccountId = fromAccountId;
+    }
+}
+
+export type CreateNewBankAccountResponse = {
+    id: number;
+    customerId: number;
+    type: string;
+    balance: number;
+}
+
 
 
