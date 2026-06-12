@@ -24,7 +24,7 @@ export type CustomerAccountsResponse = {
 export class CreateNewBankAccountRequest {
     customerId: number;
     newAccountType: number;
-    fromAccountId : number;
+    fromAccountId: number;
 
     constructor(customerId: number, newAccountType: number, fromAccountId: number) {
         this.customerId = customerId;
@@ -39,6 +39,36 @@ export type CreateNewBankAccountResponse = {
     type: string;
     balance: number;
 }
+
+export class UpdateCustomerInformationRequest {
+    customerId: number;
+    firstName: string;
+    lastName: string;
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    phoneNumber: string;
+    ssn: string;
+    username: string;
+    password: string;
+
+    constructor(customerId: number, firstName: string, lastName: string, street: string, city: string, state: string, zipCode: string, phoneNumber: string, ssn: string, username: string, password: string) {
+        this.customerId = customerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+        this.phoneNumber = phoneNumber;
+        this.ssn = ssn;
+        this.username = username;
+        this.password = password;
+    }
+
+}
+
 
 
 

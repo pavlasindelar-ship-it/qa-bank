@@ -3,7 +3,8 @@ import {
     CreateNewBankAccountRequest,
     CreateNewBankAccountResponse,
     CustomerAccountsResponse,
-    CustomersResponse
+    CustomersResponse,
+    UpdateCustomerInformationRequest
 } from "../api/customers";
 import { ApiResponse, BaseClient } from "./base.client";
 
@@ -38,6 +39,27 @@ export class CustomersClient extends BaseClient {
                 customerId: data.customerId,
                 newAccountType: data.newAccountType,
                 fromAccountId: data.fromAccountId
+            }
+        });
+    }
+
+    async updateCustomerInformation(customerId: number, data: UpdateCustomerInformationRequest): Promise<ApiResponse<string>> {
+        return await this.post<string>("/parabank/services/bank/customers/update/" + customerId, {
+            headers: {
+                "Accept": "application/json"
+            },
+            params: {
+                customerId: data.customerId,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                street: data.street,
+                city: data.city,
+                state: data.state,
+                zipCode: data.zipCode,
+                phoneNumber: data.phoneNumber,
+                ssn: data.ssn,
+                username: data.username,
+                password: data.password
             }
         });
     }

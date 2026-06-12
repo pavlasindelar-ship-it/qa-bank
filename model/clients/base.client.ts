@@ -38,7 +38,7 @@ export class BaseClient {
         try {
             return await response.json();
         } catch (e) {
-            return null;
+            return response.text();
         }
     }
 
