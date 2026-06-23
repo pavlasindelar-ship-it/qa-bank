@@ -4,6 +4,7 @@ import {
     CreateNewBankAccountResponse,
     CustomerAccountsResponse,
     CustomersResponse,
+    GetPositionsForCustomerResponse,
     UpdateCustomerInformationRequest
 } from "../api/customers";
 import { ApiResponse, BaseClient } from "./base.client";
@@ -60,6 +61,14 @@ export class CustomersClient extends BaseClient {
                 ssn: data.ssn,
                 username: data.username,
                 password: data.password
+            }
+        });
+    }
+
+    async getPositionsForCustomer(customerId: number): Promise<ApiResponse<GetPositionsForCustomerResponse[]>> {
+        return await this.get<GetPositionsForCustomerResponse[]>("/parabank/services/bank/customers/" + customerId + "/positions", {
+            headers: {
+                "Accept": "application/json"
             }
         });
     }

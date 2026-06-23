@@ -66,8 +66,19 @@ export class UpdateCustomerInformationRequest {
         this.username = username;
         this.password = password;
     }
-
 }
+
+    export type GetPositionsForCustomerResponse = {
+        positionId: number;
+        customerId: number;
+        name: string;
+        symbol: string;
+        shares: number;
+        purchasePrice: number;
+    }
+
+
+
 
 
 

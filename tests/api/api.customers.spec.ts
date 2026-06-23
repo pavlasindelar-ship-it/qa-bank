@@ -1,6 +1,6 @@
 import { apiTest } from "../../core/fixtures/api-fixtures";
 import { expect } from "@playwright/test";
-import { CreateNewBankAccountRequest, CreateNewBankAccountResponse, CustomerAccountsResponse, CustomersResponse, UpdateCustomerInformationRequest } from "../../model/api/customers";
+import { CreateNewBankAccountRequest, CreateNewBankAccountResponse, CustomerAccountsResponse, CustomersResponse, GetPositionsForCustomerResponse, UpdateCustomerInformationRequest } from "../../model/api/customers";
 import { ApiResponse } from "../../model/clients/base.client";
 import { faker } from "@faker-js/faker";
 
@@ -65,6 +65,12 @@ apiTest.describe("Customer API tests", () => {
         );
         expect(response.status).toBe(200);
         expect(response.body).toBe("Successfully updated customer profile");
+    });
+
+    apiTest("Get positions for customer", async ({ customersClient }) => {
+        const response: ApiResponse<GetPositionsForCustomerResponse[]> = await customersClient.getPositionsForCustomer(
+            parseInt(process.env.CUSTOMER_ID!));
+        expect(response.status).toBe(200);
     });
 
 });
