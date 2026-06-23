@@ -18,18 +18,24 @@ jobs:
     - name: Start Parabank Docker container
       run: |
         echo "Projekt běží v Docker aplikaci, proto v CI spouštíme Docker kontejner Parabank"
+        docker rm -f parabank-ci || true
         docker pull parasoft/parabank
         docker run --rm -d --name parabank-ci -p 8080:8080 parasoft/parabank
-        echo "Čekám, až bude Parabank dostupná na http://127.0.0.1:8080/"
+        echo "Čekám, až bude Parabank dostupná na http://127.0.0.1:8080/parabank/"
         for i in {1..24}; do
-          if curl --fail --silent http://127.0.0.1:8080/ >/dev/null 2>&1; then
+          if curl --fail --silent -L http://127.0.0.1:8080/parabank/ >/dev/null 2>&1; then
             echo "Parabank je online"
             break
           fi
           echo "Čekám 5 sekund... ($i/24)"
           sleep 5
         done
-        curl --fail http://127.0.0.1:8080/
+        if ! curl --fail --silent -L http://127.0.0.1:8080/parabank/ >/dev/null 2>&1; then
+          echo "Chyba: Parabank nebyl dostupný do 120 sekund"
+          docker ps -a
+          docker logs parabank-ci --tail 100 || true
+          exit 1
+        fi
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
