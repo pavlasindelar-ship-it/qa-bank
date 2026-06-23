@@ -8,35 +8,39 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    services:
-      parabank:
-        image: parasoft/parabank
-        ports:
-          - 8080:8080
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
-    - name: Wait for Parabank service
+    - name: Check Docker availability
+      run: docker version
+    - name: Start Parabank Docker container
       run: |
-        echo "Čekám na Parabank service na http://127.0.0.1:8080/"
+        echo "Projekt běží v Docker aplikaci, proto v CI spouštíme Docker kontejner Parabank"
+        docker pull parasoft/parabank
+        docker run --rm -d --name parabank-ci -p 8080:8080 parasoft/parabank
+        echo "Čekám, až bude Parabank dostupná na http://127.0.0.1:8080/"
         for i in {1..24}; do
           if curl --fail --silent http://127.0.0.1:8080/ >/dev/null 2>&1; then
             echo "Parabank je online"
-            exit 0
+            break
           fi
           echo "Čekám 5 sekund... ($i/24)"
           sleep 5
         done
-        echo "Chyba: Parabank nebyl dostupný do 120 sekund"
-        exit 1
+        curl --fail http://127.0.0.1:8080/
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
+    - name: Stop Parabank Docker container
+      if: always()
+      run: |
+        echo "Ukončuji Parabank Docker kontejner"
+        docker stop parabank-ci || true
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
